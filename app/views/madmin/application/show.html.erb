@@ -1,38 +1,36 @@
 <%= content_for :title, resource.display_name(@record) %>
 
-<header class="header">
-  <h1>
-    <%= link_to resource.friendly_name.pluralize, resource.index_path %>
-    /
-    <%= resource.display_name(@record) %>
-  </h1>
-
-  <div class="actions">
+<div class="md:flex md:items-center md:justify-between mb-8">
+  <div class="min-w-0 flex-1">
+    <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight">
+      <%= link_to resource.friendly_name.pluralize, resource.index_path, class: "text-blue-600 hover:text-blue-900" %>
+      <span class="text-gray-500">/</span>
+      <%= resource.display_name(@record) %>
+    </h1>
+  </div>
+  <div class="mt-4 flex md:ml-4 md:mt-0 space-x-3">
     <% resource.member_actions.each do |action| %>
       <%= instance_exec(@record, &action) %>
     <% end %>
-    <%= link_to "Edit", resource.edit_path(@record), class: "btn btn-secondary" %>
-    <%= button_to "Delete", resource.show_path(@record), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <%= link_to "Edit", resource.edit_path(@record), class: "inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+    <%= button_to "Delete", resource.show_path(@record), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-red-600 shadow-sm ring-1 ring-inset ring-red-600 hover:bg-red-50" %>
   </div>
-</header>
+</div>
 
-<div class="table-scroll">
-  <table>
-    <tbody>
+<div class="overflow-hidden bg-white shadow sm:rounded-lg">
+  <dl class="divide-y divide-gray-100">
     <% resource.attributes.values.each do |attribute| %>
       <% next if attribute.field.nil? %>
       <% next unless attribute.field.visible?(action_name) %>
 
-      <tr>
-        <th class="label">
+      <div class="px-4 py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5 even:bg-gray-50">
+        <dt class="text-sm font-medium text-gray-900">
           <%= attribute.field.options.label || attribute.name.to_s.titleize %>
-        </th>
-
-        <td>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
           <%= render partial: attribute.field.to_partial_path("show"), locals: { field: attribute.field, record: @record, resource: resource } %>
-        </td>
-      </tr>
+        </dd>
+      </div>
     <% end %>
-    </tbody>
-  </table>
+  </dl>
 </div>

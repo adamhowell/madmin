@@ -1,11 +1,15 @@
-<%= content_for :title, "New #{resource.display_name(@record)}" %>
+<%= content_for :title, "Edit #{resource.display_name(@record)}" %>
 
-<header class="header">
-  <h1>
-    <%= link_to resource.friendly_name.pluralize, resource.index_path %>
-    /
-    <strong>Edit <%= link_to resource.display_name(@record), resource.show_path(@record) %></strong>
+<div class="mb-8">
+  <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:tracking-tight">
+    <%= link_to resource.friendly_name.pluralize, resource.index_path, class: "text-blue-600 hover:text-blue-900" %>
+    <span class="text-gray-500">/</span>
+    <span>Edit <%= link_to resource.display_name(@record), resource.show_path(@record), class: "text-blue-600 hover:text-blue-900" %></span>
   </h1>
-</header>
+</div>
 
-<%= render partial: "form", locals: { record: @record, resource: resource } %>
+<div class="bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 sm:p-6">
+    <%= render partial: "form", locals: { record: @record, resource: resource } %>
+  </div>
+</div>
