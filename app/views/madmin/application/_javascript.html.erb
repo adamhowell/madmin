@@ -4,7 +4,5 @@
 <%= stylesheet_link_tag "https://unpkg.com/flatpickr/dist/flatpickr.min.css", "data-turbo-track": "reload" %>
 <%= stylesheet_link_tag "https://unpkg.com/tom-select/dist/css/tom-select.min.css", "data-turbo-track": "reload" %>
 <% if Madmin.use_tailwind %>
-  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tailwindcss@4.1.6/lib/css/preflight.min.css", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tailwindcss@4.1.6/lib/css/components.min.css", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tailwindcss@4.1.6/lib/css/utilities.min.css", "data-turbo-track": "reload" %>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <% end %>
