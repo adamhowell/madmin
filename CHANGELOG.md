@@ -1,5 +1,8 @@
 ### Unreleased
 
+- Add Tailwind CSS v4.1.6 integration via CDN
+- Add `Madmin.use_tailwind` configuration option (defaults to true)
+
 ### 2.0.1
 
 - Add pagination to has_many and nested_has_many fields

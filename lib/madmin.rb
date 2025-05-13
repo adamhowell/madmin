@@ -40,6 +40,7 @@ module Madmin
   mattr_accessor :menu, default: Menu.new
   mattr_accessor :site_name
   mattr_accessor :stylesheets, default: []
+  mattr_accessor :use_tailwind, default: true
 
   class << self
     def resource_for(object)
